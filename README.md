@@ -30,7 +30,3 @@ Stay tuned for exciting features like:
 - 🏠 **Advanced property search:** Filter by location, price, amenities, and more.
 - 💬 **Real-time chat:** Connect instantly with agents and sellers.
 - ❤️ **Personalized recommendations:** Discover properties tailored to your preferences.
-
-## Contributing
-
-We welcome contributions from the community! If you'd like to get involved, please check out our [Contribution Guidelines](CONTRIBUTING.md).
