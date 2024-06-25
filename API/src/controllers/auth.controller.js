@@ -2,8 +2,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../services/email.js";
 import User from "../../DB/models/user.model.js";
+import { asyncHandler } from "../middlewares/errHandler.js";
 
-export const signup = async (req, res) => {
+export const signup = asyncHandler(async (req, res) => {
   const { email, username, password } = req.body;
   const user = await User.findOne({ email }).select("email");
   if (user) {
@@ -28,9 +29,9 @@ export const signup = async (req, res) => {
       res.status(400).json({ message: "E-mail Is Rejected" });
     }
   }
-};
+});
 
-export const confirmEmail = async (req, res, next) => {
+export const confirmEmail = asyncHandler(async (req, res, next) => {
   const { token } = req.params;
   const decoded = jwt.verify(token, process.env.EMAILTOKEN);
 
@@ -47,4 +48,4 @@ export const confirmEmail = async (req, res, next) => {
       res.status(200).json({ message: "Confirmed" });
     }
   }
-};
+});
