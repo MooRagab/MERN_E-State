@@ -9,7 +9,6 @@ Welcome to the E-State project, a cutting-edge real estate web app designed to r
 
 - [Technology Stack](#technology-stack)
 - [Features](#features)
-- [Contributing](#contributing)
 
 ## Technology Stack
 
