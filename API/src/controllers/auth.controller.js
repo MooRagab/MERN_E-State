@@ -4,11 +4,15 @@ import jwt from "jsonwebtoken";
 import User from "../../DB/models/user.model.js";
 import { asyncHandler } from "../middlewares/errHandler.js";
 
-export const signup = asyncHandler(async (req, res) => {
+export const signup = asyncHandler(async (req, res, next) => {
   const { email, username, password } = req.body;
-  const user = await User.findOne({ email }).select("email");
+  const user = await User.findOne({ email, username }).select("email");
   if (user) {
-    res.status(409).json({ message: "Email already exists" });
+    next(
+      Error("E-mail or username is already exist", {
+        cause: 409,
+      })
+    );
   } else {
     const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
     const newUser = new User({
@@ -45,3 +49,24 @@ export const signup = asyncHandler(async (req, res) => {
 //     }
 //   }
 // });
+
+export const signIn = asyncHandler(async (req, res, next) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+  if (!user) {
+    next(
+      Error("User not found", {
+        cause: 404,
+      })
+    );
+  }
+  const match = bcrypt.compareSync(password, user.password);
+  if (!match) { 
+    next(Error("In-Valid Password", { cause: 400 }));
+  }
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  const { password: pass, ...rest } = user._doc;
+
+  res.cookie("access_token", token, { httpOnly: true }).status(200).json(rest);
+});
+ 
