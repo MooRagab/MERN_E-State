@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function SignIn() {
+export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const [setError, error] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -33,9 +33,10 @@ export default function SignIn() {
       }
       setLoading(false);
       setError(null);
-      navigate("/sign-in");
+      navigate("/");
     } catch (error) {
       setLoading(false);
+      setError(error.message);
     }
   };
   return (
@@ -60,7 +61,7 @@ export default function SignIn() {
               onChange={handleChange}
             />
           </div>
-
+     
           <div className="mb-4 animate-fade-in delay-200">
             <label
               className="block text-gray-700 text-sm font-semibold mb-2"
@@ -76,22 +77,21 @@ export default function SignIn() {
               onChange={handleChange}
             />
           </div>
-
           <div className="flex items-center justify-between animate-fade-in delay-400">
             <button
               disabled={loading}
               type="submit"
               className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out"
             >
-              Log In
+              {loading ? "Loading..." : "Log in"}
             </button>
           </div>
         </form>
         <div className="mt-4 text-center animate-fade-in delay-500">
           <p className="text-gray-700 text-sm">
-            Don’t have an account?{" "}
+            Dont have an account?{" "}
             <Link to={"/sign-up"} className="text-blue-700 hover:underline">
-              Sign Up
+              Signup
             </Link>
           </p>
         </div>
