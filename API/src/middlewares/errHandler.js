@@ -1,7 +1,7 @@
 export const asyncHandler = (fun) => {
   return (req, res, next) => {
-    fun(req, res, next).catch((err) => {
-      next(new Error(err, { cause: 500, error: err.message }));
+    fun(req, res, next).catch((error) => {
+      next(new Error(error, { cause: 500, error: error.message }));
     });
   };
 };
