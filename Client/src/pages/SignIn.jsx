@@ -6,6 +6,7 @@ import {
   signInSuccess,
   signInFailure,
 } from "../toolkit/user/userSlice";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -18,7 +19,7 @@ export default function SignUp() {
       ...formData,
       [e.target.id]: e.target.value,
     });
-  }; 
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -52,15 +53,15 @@ export default function SignUp() {
           <div className="mb-4 animate-fade-in">
             <label
               className="block text-gray-700 text-sm font-semibold mb-2"
-              htmlFor="username"
+              htmlFor="email"
             >
-              Username
+              Email
             </label>
             <input
-              id="username"
-              type="text"
+              id="email"
+              type="email"
               className="shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 bg-gray-200 text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
-              placeholder="Username"
+              placeholder="E-mail"
               onChange={handleChange}
             />
           </div>
@@ -89,7 +90,9 @@ export default function SignUp() {
               {loading ? "Loading..." : "Log in"}
             </button>
           </div>
+          <OAuth />
         </form>
+
         <div className="mt-4 text-center animate-fade-in delay-500">
           <p className="text-gray-700 text-sm">
             Dont have an account?{" "}

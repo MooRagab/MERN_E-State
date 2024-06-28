@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -46,7 +47,7 @@ export default function SignUp() {
           Create an account
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 animate-fade-in">
+          <div className="mb-4 animate-fade-in flex flex-col">
             <label
               className="block text-gray-700 text-sm font-semibold mb-2"
               htmlFor="username"
@@ -106,7 +107,7 @@ export default function SignUp() {
               onChange={handleChange}
             />
           </div>
-          <div className="flex items-center justify-between animate-fade-in delay-400">
+          <div className=" flex items-center justify-between animate-fade-in delay-400 ">
             <button
               disabled={loading}
               type="submit"
@@ -115,7 +116,9 @@ export default function SignUp() {
               {loading ? "Loading..." : "Sign Up"}
             </button>
           </div>
+          <OAuth />
         </form>
+
         <div className="mt-4 text-center animate-fade-in delay-500">
           <p className="text-gray-700 text-sm">
             Already have an account?{" "}
