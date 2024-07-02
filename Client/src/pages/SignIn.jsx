@@ -8,12 +8,11 @@ import {
 } from "../toolkit/user/userSlice";
 import OAuth from "../components/OAuth";
 
-export default function SignUp() {
+export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading } = useSelector((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -102,6 +101,7 @@ export default function SignUp() {
           </p>
         </div>
       </div>
+      {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>
   );
 }

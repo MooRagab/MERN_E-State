@@ -13,7 +13,6 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
-  console.log(formData);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,8 +20,8 @@ export default function SignUp() {
       const res = await fetch("/api/v1/auth/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json", 
+        }, 
         body: JSON.stringify(formData),
       });
       const data = await res.json();

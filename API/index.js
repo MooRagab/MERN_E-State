@@ -13,7 +13,7 @@ dotenv.config({ path: path.join(__dirname, "./config/.env") });
 const app = express();
 const port = process.env.PORT;
 const baseUrl = process.env.BASEURL;
- 
+
 //convert Buffer Data
 app.use(express.json());
 
@@ -28,3 +28,13 @@ app.get("*", (req, res) => {
 //Connections
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 connectDB();
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,  
+  });
+});

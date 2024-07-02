@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const connectDB = async () => {
-  return await mongoose
+  return await mongoose 
     .connect(process.env.DBURI)
     .then((res) =>
       console.log(`DB Connected successfully on .........${process.env.DBURI} `)
@@ -9,3 +9,4 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+ 
