@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-// import { sendEmail } from "../services/email.js";
 import User from "../../DB/models/user.model.js";
 import { errorHandler } from "../middlewares/errHandler.js";
 

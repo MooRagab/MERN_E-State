@@ -22,9 +22,10 @@ export default function OAuth() {
         body: JSON.stringify({
           name: result.user.displayName,
           email: result.user.email,
-          pfp: result.user.photoURL,
+          photo: result.user.photoURL,
         }),
       });
+
 
       const data = await res.json();
       dispatch(signInSuccess(data));
